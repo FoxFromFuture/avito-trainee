@@ -74,12 +74,13 @@ final class AdvertisementListViewController: UIViewController {
     
     private func configureNavigationBar() {
         self.view.addSubview(navigationBar)
-        navigationBar.pin(to: self.view, [.left: 0, .right: 0, .top: 0])
+        navigationBar.pin(to: self.view, [.left: 0, .right: 0])
+        navigationBar.pinTop(to: self.view.safeAreaLayoutGuide.topAnchor)
     }
     
     private func configureTabBar() {
         self.view.addSubview(tabBar)
-        tabBar.pinBottom(to: self.view.bottomAnchor)
+        tabBar.pinBottom(to: self.view.safeAreaLayoutGuide.bottomAnchor)
         tabBar.pin(to: self.view, [.left: 0, .right: 0])
     }
     

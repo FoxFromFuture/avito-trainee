@@ -15,6 +15,7 @@ final class URLImageView: UIImageView {
     // MARK: - Private Properties
     private let imageCache = NSCache<AnyObject, UIImage>()
     private let session: URLSession = URLSession.shared
+    private var imageUrlString: String?
     
     // MARK: - Initializers
     init() {
@@ -29,6 +30,7 @@ final class URLImageView: UIImageView {
     // MARK: - Internal Methods
     func loadImageByURL(url: String, placeholder: UIImage) {
         self.image = placeholder
+        self.imageUrlString = url
         
         if let cachedImage = self.imageCache.object(forKey: url as AnyObject) {
             self.image = cachedImage
@@ -40,7 +42,9 @@ final class URLImageView: UIImageView {
             case .success(let image):
                 DispatchQueue.main.async { [weak self] in
                     self?.imageCache.setObject(image, forKey: url as AnyObject)
-                    self?.image = image
+                    if self?.imageUrlString == url {
+                        self?.image = image
+                    }
                 }
             case .failure(let error):
                 print(error)

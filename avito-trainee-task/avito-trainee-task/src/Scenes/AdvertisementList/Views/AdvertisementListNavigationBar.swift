@@ -27,7 +27,7 @@ final class AdvertisementListNavigationBar: UIView {
     
     // MARK: - Private Methods
     private func configureAdvertisementListNavigationBar() {
-        setHeight(to: 120)
+        setHeight(to: 70)
         layer.backgroundColor = UIColor.white.cgColor
         configureSearchBar()
         configureCartImageView()

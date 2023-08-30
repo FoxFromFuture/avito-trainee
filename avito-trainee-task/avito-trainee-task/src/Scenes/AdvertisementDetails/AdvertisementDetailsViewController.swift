@@ -105,21 +105,20 @@ final class AdvertisementDetailsViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.backgroundColor = .white
         scrollView.frame = view.bounds
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: scrollContentView.bounds.height)
+        scrollView.pin(to: self.view, [.top: 0, .bottom: 0, .right: 0, .left: 0])
     }
     
     private func configureScrollContentView() {
         scrollView.addSubview(scrollContentView)
         scrollContentView.pin(to: scrollView, [.left: 0, .right: 0, .top: 0, .bottom: 0])
-        scrollContentView.setWidth(to: scrollView.frame.width)
-        scrollContentView.setHeight(to: scrollView.frame.height)
+        scrollContentView.pinWidth(to: scrollView.widthAnchor)
         scrollContentView.backgroundColor = .white
     }
     
     private func configureAdImageView() {
         scrollContentView.addSubview(adImageView)
         adImageView.pin(to: scrollContentView, [.top: 0, .left: 0, .right: 0])
-        adImageView.pinWidth(to: adImageView.heightAnchor, 1.0)
+        adImageView.pinHeight(to: adImageView.widthAnchor)
         adImageView.contentMode = .scaleAspectFit
         adImageView.clipsToBounds = true
     }
@@ -208,7 +207,7 @@ final class AdvertisementDetailsViewController: UIViewController {
     private func configureCreatedDateLabel() {
         scrollContentView.addSubview(createdDateLabel)
         createdDateLabel.pinTop(to: self.descriptionLabel.bottomAnchor, 30)
-        createdDateLabel.pin(to: scrollContentView, [.right: 10, .left: 10])
+        createdDateLabel.pin(to: scrollContentView, [.right: 10, .left: 10, .bottom: 20])
         createdDateLabel.numberOfLines = 0
         createdDateLabel.textColor = .gray
         createdDateLabel.font = .systemFont(ofSize: 13, weight: .regular)
@@ -218,16 +217,6 @@ final class AdvertisementDetailsViewController: UIViewController {
         self.view.addSubview(loadingIndicator)
         loadingIndicator.pinCenter(to: self.view)
         loadingIndicator.color = .gray
-    }
-    
-    private func showLoadingFailure() {
-        view.addSubview(loadingFailureLabel)
-        loadingFailureLabel.pinCenter(to: self.view.centerXAnchor)
-        loadingFailureLabel.pinTop(to: self.view, self.view.frame.height / 2.0 - 15)
-        
-        view.addSubview(reloadButton)
-        reloadButton.pinTop(to: self.view, self.view.frame.height / 2.0 + 15)
-        reloadButton.pinCenter(to: self.view.centerXAnchor)
     }
     
     private func configureLoadingFailureLabel() {
@@ -260,6 +249,16 @@ final class AdvertisementDetailsViewController: UIViewController {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         interactor.loadAdvertisementListScene(Model.AdvertisementList.Request())
+    }
+    
+    private func showLoadingFailure() {
+        view.addSubview(loadingFailureLabel)
+        loadingFailureLabel.pinCenter(to: self.view.centerXAnchor)
+        loadingFailureLabel.pinTop(to: self.view, self.view.frame.height / 2.0 - 15)
+        
+        view.addSubview(reloadButton)
+        reloadButton.pinTop(to: self.view, self.view.frame.height / 2.0 + 15)
+        reloadButton.pinCenter(to: self.view.centerXAnchor)
     }
 }
 

@@ -31,7 +31,7 @@ final class TabBar: UIView {
     
     // MARK: - Private Methods
     private func configureTabBar() {
-        setHeight(to: 80)
+        setHeight(to: 54)
         layer.backgroundColor = UIColor.white.cgColor
         configureSearchImageView()
         configureFavouritesImageView()
@@ -76,7 +76,7 @@ final class TabBar: UIView {
         imageViewsStack.alignment = .center
         imageViewsStack.distribution = .equalCentering
         imageViewsStack.axis = .horizontal
-        imageViewsStack.pin(to: self, [.left: 35, .bottom: 45, .right: 35])
+        imageViewsStack.pin(to: self, [.left: 35, .bottom: 18, .right: 35])
         imageViewsStack.addArrangedSubview(searchImageView)
         imageViewsStack.addArrangedSubview(favouritesImageView)
         imageViewsStack.addArrangedSubview(adsImageView)
