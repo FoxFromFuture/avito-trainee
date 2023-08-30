@@ -29,7 +29,8 @@ Thank you for considering my project! This README will guide you through setting
     
 3. **Set the Active Scheme:**
 
-    - In Xcode's toolbar, select the target device or simulator you want to run the app on (preferred: iPhone 14 Pro, iOS 16.2).
+    - In Xcode's toolbar, select the target device or simulator you want to run the app on.
+      (preferred: iPhone 14 Pro, iOS 16.2)
     
 4. **Build and Run the Project:**
 
